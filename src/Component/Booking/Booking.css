@@ -1,0 +1,13 @@
+.booking{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.booking-form{
+text-align: center;
+border: 1px solid gray;
+width: 400px;
+padding: 10px;
+background-color: lightblue transparent;
+}

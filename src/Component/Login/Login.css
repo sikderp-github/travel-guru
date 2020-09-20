@@ -1,0 +1,28 @@
+.login-container {
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.formDiv {
+    border: 2px solid rgb(247, 243, 243);
+    
+}
+
+form{
+   font-size: 120%;
+    width: 300px;
+    background-color: rgb(172, 255, 227);
+}
+.loginButton{
+    justify-content: space-around;
+    font-size: 15px;
+    background-color: rgb(228, 223, 214);
+    border: 2px solid rgb(41, 40, 39) transparent;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(194, 138, 138, 0.5)
+}
