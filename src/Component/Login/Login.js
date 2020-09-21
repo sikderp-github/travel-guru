@@ -3,12 +3,10 @@ import { UserContext } from '../../App';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import fb from '../../Images/Icon/fb.png';
 import google from '../../Images/Icon/google.png';
 import './Login.css';
-
-
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -21,15 +19,18 @@ const Login = () => {
         error: '',
         success: false
     });
+
     const [newUser, setNewUser] = useState(false);
     const history = useHistory();
     const location = useLocation();
+    console.log(location);
     let { from } = location.state || { from: { pathname: "/" } };
 
     if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
     }
 
+    //login using google account
     const handleGoogleSignIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -44,6 +45,8 @@ const Login = () => {
                 console.log(errorCode);
             });
     }
+
+    // login using facebook account
     const handleFbSignIn = () => {
         var provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function (result) {
@@ -62,6 +65,7 @@ const Login = () => {
             });
     }
 
+    // to validate email and password
     const handleBlur = (e) => {
         let isFieldValid = true;
         if (e.target.name === 'email') {
@@ -73,13 +77,25 @@ const Login = () => {
             const passwordHasNumber = /\d{1}/.test(e.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
         }
+        if (e.target.value === 'confirmPassword') {
+            let isPasswordValid = true;
+            let passwordHasNumber = true;
+            let isPasswordConfirmed;
+            let password1 = user.password;
+            let password2 = user.confirmPassword;
+            (password1 !== password2) ? isPasswordConfirmed = false :
+                isPasswordConfirmed = true;
+            isPasswordConfirmed.message = "password is not correct";
+            isFieldValid = isPasswordValid && passwordHasNumber && isPasswordConfirmed;
+        }
         if (isFieldValid) {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
-
         }
     }
+
+    // login using email & password
     const handleSubmit = (e) => {
         if (newUser && user.email && user.password) {
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
@@ -119,17 +135,19 @@ const Login = () => {
         }
         e.preventDefault();
     }
+
+    // to update users
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
-
         user.updateProfile({
             displayName: name
-
-        }).then(function () {
-            console.log('user updated')
-        }).catch(function (error) {
-            console.log(error)
-        });
+        })
+            .then(function () {
+                console.log('user updated')
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
     }
 
     return (
@@ -159,11 +177,11 @@ const Login = () => {
                     <br />
                     {!newUser ? <input name="newUser" type="submit" value="Sign in" /> :
                         <input name="newUser" type="submit" value="Sign up" />}
-                    <br />
-                    {newUser ? <p>Already have an account ?
-                    <Link name='newUser' onClick={() => setNewUser(!newUser)}>login</Link> </p> :
+                    <br /> <hr />
+                    {newUser ? <p>Already have an account ? <br />
+                        <button name='newUser' onClick={() => setNewUser(!newUser)}>login</button> </p> :
                         <p>Don't have an account ?
-                    <Link to='/login' name='newUser' onClick={() => setNewUser(!newUser)}>Create an account</Link> </p>
+                    <button name='newUser' onClick={() => setNewUser(!newUser)}>Create an account</button> </p>
                     }
                 </div>
             </form>

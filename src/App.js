@@ -15,7 +15,6 @@ import Login from './Component/Login/Login';
 import Booking from './Component/Booking/Booking';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 export const UserContext = createContext();
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]} >
-      <h3>email: {loggedInUser.email}</h3>
       <Router>
         <Header />
         <Switch>

@@ -26,6 +26,7 @@ const cardStyle = {
     height: '560px',
     boxShadow: "3px 3px gold, -1em 0 .4em olive",
 }
+
 export default function Tour(props) {
     let { title, description, photoUrl } = props.site;
     const history = useHistory();
@@ -33,15 +34,17 @@ export default function Tour(props) {
         console.log(title);
         history.push(`/booking/${title}`);
     }
+
     const classes = useStyles();
 
     return (
-        <div >
+        <section >
             <Card className={classes.root} style={cardStyle}>
                 <CardActionArea mx="auto" boxShadow={3}>
                     <CardMedia
                         className={classes.media}
                         image={photoUrl} title="Travel-guru" />
+
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2" >
                             <h2>{title}</h2>
@@ -50,13 +53,13 @@ export default function Tour(props) {
                             <p>{description}</p>
                         </Typography>
                     </CardContent>
+
                     <Button mr={3} textAlign="right" onClick={() => handlebooking(title)} variant="contained" size="medium" color="primary">
                         Book now
                     </Button>
                 </CardActionArea>
             </Card>
-        </div>
-
+        </section>
     );
 }
 

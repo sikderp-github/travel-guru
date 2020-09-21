@@ -1,13 +1,29 @@
 .hotel-container{
-border: 1px solid transparent;
+border: 3px solid goldenrod ;
 border-radius: 10px;
+box-shadow: 2px 2px 5px rgba 0,0,0, 0.5;
 padding: 10px;
 margin: 10px;
 display: flex;
-width: 50%;
-background-color: lightgoldenrodyellow;
+width: 100%;
+background-color: rgb(216, 216, 166);
 }
 .TourDetails-container h1{
-    font-size: 25px;
-    color: rgb(236, 228, 216);
+    font-size: 30px;
+    color: rgb(35, 245, 227);
+    font: outline;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
+.hotelSection{
+    width: 50%;
+    position: left;
+}
+.mapSection{
+    width: 400px;
+    position: right !important;
+ }

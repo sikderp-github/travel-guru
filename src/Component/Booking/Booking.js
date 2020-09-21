@@ -10,13 +10,13 @@ const Booking = () => {
     }
     return (
         <div className="booking" >
-            <form className="booking-form">
+            <form onSubmit={handleHotelBook} className="booking-form">
                 <h1>Booking</h1>
                 <label>Origin</label> <br />
-                <input type="text" name="from" placeholder="from where" id="" /><br />
+                <input type="text" name="from" placeholder="From where" id="" required /><br />
                 <label>Destination</label> <br />
-                <input type="text" name="To" placeholder="where to" id="" /> <br />
 
+                <input type="text" name="To" placeholder="Where to" id="" required /> <br />
                 <div>
                     <label>From</label> <br />
                     <input type="date" name="" id="fromDate" required />
@@ -26,9 +26,8 @@ const Booking = () => {
                     <input type="date" name="" id="toDate" required /><br />
                 </div><br />
                 <br />
-                <button onClick={() => handleHotelBook(title)}>Start Booking</button>
+                <button type="submit" >Start Booking</button>
             </form>
-
         </div>
     );
 };
