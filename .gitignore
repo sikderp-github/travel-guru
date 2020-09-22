@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 src/Component/Login/firebase.config.js
+src/Component/GoogleMaps/GoogleMaps.js
 firebase.json
 .firebaserc

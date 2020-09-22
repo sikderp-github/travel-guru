@@ -21,9 +21,11 @@ background-color: rgb(216, 216, 166);
 }
 .hotelSection{
     width: 50%;
-    position: left;
+    float: left;
 }
 .mapSection{
-    width: 400px;
-    position: right !important;
+    width: 40%;
+    float: left;
+    margin-left: 50px;
+    margin-top: 90px;
  }
