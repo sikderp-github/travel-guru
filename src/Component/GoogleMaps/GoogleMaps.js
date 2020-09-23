@@ -5,8 +5,11 @@ import './GoogleMaps.css'
 export class MapContainer extends Component {
     render() {
         const style = {
-            width: '100%',
-            height: '100%'
+            width: '40%',
+            height: '98%',
+            border: '2px solid orange',
+            borderRadius: '10px',
+            boxShadow: '2px 3px'
         }
         return (
             <containter className="googleMap">
